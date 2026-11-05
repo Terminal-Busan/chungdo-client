@@ -1,0 +1,65 @@
+<svg width="760" height="620" viewBox="0 0 760 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wash" x1="52" y1="28" x2="690" y2="584" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F9FF"/>
+      <stop offset="1" stop-color="#E8F1FF"/>
+    </linearGradient>
+    <linearGradient id="sweater" x1="124" y1="387" x2="368" y2="604" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4DB6A1"/>
+      <stop offset="1" stop-color="#238E82"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="185" y1="224" x2="351" y2="411" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD9BE"/>
+      <stop offset="1" stop-color="#F1AF8B"/>
+    </linearGradient>
+    <filter id="shadow" x="48" y="46" width="692" height="550" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#7295C4" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect x="28" y="24" width="704" height="552" rx="44" fill="url(#wash)"/>
+  <circle cx="604" cy="111" r="52" fill="#D9F0E7"/>
+  <circle cx="647" cy="145" r="18" fill="#FFE1A8"/>
+  <path d="M75 541C180 508 274 514 379 552C484 590 583 576 690 535" stroke="#D3E5F8" stroke-width="3" stroke-linecap="round"/>
+
+  <g filter="url(#shadow)">
+    <rect x="333" y="107" width="345" height="258" rx="17" fill="#1C2940"/>
+    <rect x="347" y="121" width="317" height="230" rx="9" fill="#fff"/>
+    <rect x="347" y="121" width="317" height="30" rx="9" fill="#F2F6FC"/>
+    <circle cx="363" cy="136" r="4" fill="#B5C9E6"/>
+    <circle cx="377" cy="136" r="4" fill="#B5C9E6"/>
+    <circle cx="391" cy="136" r="4" fill="#B5C9E6"/>
+    <text x="371" y="180" fill="#15213A" font-family="Arial, sans-serif" font-size="17" font-weight="700">어떤 안내를 받으셨나요?</text>
+    <text x="371" y="199" fill="#74849D" font-family="Arial, sans-serif" font-size="8">결과 통지서와 현재 상황을 알려주시면 다음 선택지를 정리해 드릴게요.</text>
+    <text x="371" y="225" fill="#34445F" font-family="Arial, sans-serif" font-size="8" font-weight="700">신청했던 정책</text>
+    <text x="523" y="225" fill="#34445F" font-family="Arial, sans-serif" font-size="8" font-weight="700">안내받은 탈락 사유</text>
+    <rect x="371" y="233" width="136" height="30" rx="5" fill="#fff" stroke="#C9D7EA"/>
+    <rect x="523" y="233" width="126" height="30" rx="5" fill="#fff" stroke="#C9D7EA"/>
+    <text x="380" y="252" fill="#A2B0C4" font-family="Arial, sans-serif" font-size="8">예: 청년 월세 지원</text>
+    <text x="532" y="252" fill="#A2B0C4" font-family="Arial, sans-serif" font-size="8">결과 통지서 내용을 적어주세요</text>
+    <text x="371" y="282" fill="#34445F" font-family="Arial, sans-serif" font-size="8" font-weight="700">나이</text>
+    <text x="523" y="282" fill="#34445F" font-family="Arial, sans-serif" font-size="8" font-weight="700">가구 형태</text>
+    <rect x="371" y="290" width="136" height="30" rx="5" fill="#fff" stroke="#C9D7EA"/>
+    <rect x="523" y="290" width="126" height="30" rx="5" fill="#fff" stroke="#C9D7EA"/>
+    <text x="380" y="309" fill="#A2B0C4" font-family="Arial, sans-serif" font-size="8">예: 27</text>
+    <text x="532" y="309" fill="#53647D" font-family="Arial, sans-serif" font-size="8">가구 형태를 선택해 주세요</text>
+    <path d="M456 365H558L589 385H426L456 365Z" fill="#A9BBD5"/>
+    <path d="M424 385H591L611 395H404L424 385Z" fill="#7187A8"/>
+  </g>
+
+  <path d="M121 579C112 521 119 452 145 404C164 369 192 352 227 352C271 352 309 380 323 423C342 481 354 534 362 579H121Z" fill="url(#sweater)"/>
+  <path d="M154 402C163 373 186 348 220 341C258 334 292 350 312 377L279 424L180 435L154 402Z" fill="#EFF6FF"/>
+  <path d="M200 351C193 327 197 299 211 277L284 298C293 324 287 350 270 369L200 351Z" fill="url(#skin)"/>
+  <path d="M193 246C192 207 218 175 254 166C294 156 332 181 342 218C351 252 337 298 307 319C278 340 234 332 210 302C199 289 194 268 193 246Z" fill="url(#skin)"/>
+  <path d="M193 248C177 211 191 164 223 143C254 122 301 130 327 159C346 180 354 214 340 240C326 219 313 202 292 195C263 185 231 199 214 226L211 264L193 248Z" fill="#E5EEF9"/>
+  <path d="M207 181C223 150 264 135 298 148C315 155 328 167 335 184C309 170 278 165 246 178C230 184 218 196 208 212L207 181Z" fill="#C5D5E8"/>
+  <path d="M228 247C237 253 247 253 255 247" stroke="#9D654F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="232" cy="225" r="4" fill="#34445F"/>
+  <circle cx="296" cy="225" r="4" fill="#34445F"/>
+  <path d="M248 272C260 284 277 286 289 273" stroke="#C16D62" stroke-width="4" stroke-linecap="round"/>
+  <path d="M204 359C180 375 164 404 160 442" stroke="#F0B08D" stroke-width="24" stroke-linecap="round"/>
+  <path d="M299 369C323 385 350 403 380 421" stroke="#F6C3A4" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="380" cy="421" r="14" fill="#F6C3A4"/>
+  <path d="M112 579H367" stroke="#2B8F83" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="106" cy="131" r="8" fill="#FFCF74"/>
+  <path d="M74 174C91 169 101 159 106 142" stroke="#FFCF74" stroke-width="5" stroke-linecap="round"/>
+</svg>

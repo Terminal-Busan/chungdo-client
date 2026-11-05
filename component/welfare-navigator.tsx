@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import AnalysisForm from "@/component/analysis-form";
@@ -38,6 +39,15 @@ export default function WelfareNavigator() {
                 내 상황으로 찾아보기
                 <span aria-hidden="true">↓</span>
               </a>
+            </div>
+            <div className="hero-visual" aria-hidden="true">
+              <Image
+                src="/grandmother-welfare.svg"
+                alt=""
+                width={760}
+                height={620}
+                priority
+              />
             </div>
           </div>
         </section>

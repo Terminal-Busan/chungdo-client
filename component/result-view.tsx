@@ -66,7 +66,10 @@ export default function ResultView() {
           <div className="empty-state">
             <div>
               <h3>분석할 입력 정보가 없어요</h3>
-              <p>처음 화면에서 신청 결과와 조건을 입력하고 다시 시작해 주세요.</p>
+              <p>
+                처음 화면에서 신청 결과와 조건을 입력하고 다시 시작해
+                주세요.
+              </p>
             </div>
           </div>
         )}
