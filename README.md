@@ -29,8 +29,10 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Azure 데모 배포
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+GitHub Actions 탭에서 **Run workflow**를 누르면 빌드한 웹을 기존 `chungdo-client-dev` App Service에 배포합니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+기존 Azure OIDC 시크릿과 연동된 App Service가 필요합니다. Linux App Service에서 Node.js 24를 선택하고, 시작 명령을 지정하는 경우 `npm start`를 사용합니다. 워크플로에서 빌드한 ZIP을 배포하므로 App Service의 배포 시 빌드는 끕니다.
+
+Actions 실행 요약에서 실제 웹 URL을 확인할 수 있습니다. API는 별도의 `chungdo-server` 저장소에서 배포합니다.
