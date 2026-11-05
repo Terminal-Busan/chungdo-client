@@ -38,13 +38,29 @@ export default function ResultView() {
   }
 
   useEffect(() => {
-    const stored = loadRequest();
-    if (!stored) {
-      setState({ status: "missing" });
-      return;
+    let active = true;
+    const controller = new AbortController();
+    async function restore() {
+      // Session storage is an external source available only in the browser.
+      const stored = await Promise.resolve().then(loadRequest);
+      if (!active) return;
+      if (!stored) {
+        setState({ status: "missing" });
+        return;
+      }
+      setRequest(stored);
+      try {
+        const analysis = await analyzeWelfare(stored, controller.signal);
+        if (active) setState({ status: "success", analysis });
+      } catch (error) {
+        if (active) setState({
+          status: "error",
+          message: error instanceof Error ? error.message : "분석 중 문제가 발생했습니다.",
+        });
+      }
     }
-    setRequest(stored);
-    void run(stored);
+    void restore();
+    return () => { active = false; controller.abort(); };
   }, []);
 
   return (

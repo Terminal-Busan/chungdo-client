@@ -1,6 +1,6 @@
 import type { WelfareAnalysisRequest } from "@/component/welfare-types";
 
-const REQUEST_KEY = "welfare-next:request";
+const REQUEST_KEY = "welfare-next:request:v2";
 
 export function saveRequest(request: WelfareAnalysisRequest) {
   try {

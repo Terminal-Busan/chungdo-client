@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: '24.x'
       - name: Install and build
+        env:
+          NEXT_PUBLIC_API_URL: ''
+          NEXT_PUBLIC_DEMO_MODE: 'false'
         run: |
           npm ci
           npm run build
@@ -59,6 +62,7 @@ jobs:
           --resource-group Terminal-ch
           --name chungdo-client-dev
           --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false ENABLE_ORYX_BUILD=false
+          API_SERVER_URL=https://chungdo-server-dev-fye6e3cubeddfdfv.japaneast-01.azurewebsites.net
           --output none
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -81,6 +85,9 @@ jobs:
             if [ "$version" = "$GITHUB_SHA" ] &&
               curl --fail --silent --show-error --location --max-time 20 "${APP_URL%/}/" -o homepage.html &&
               grep -Fq 'Welfare Next' homepage.html; then
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/health" | jq -e '.data.status == "ok"'
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/health/ready" | jq -e '.status == "ok"'
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/policies?limit=1" | jq -e '.data | type == "array"'
               printf 'Verified deployment %s\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi

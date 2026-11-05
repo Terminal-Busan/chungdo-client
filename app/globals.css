@@ -1190,3 +1190,6 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+.consent-field { display: flex; align-items: flex-start; gap: 12px; margin-block: 20px; line-height: 1.6; cursor: pointer; }
+.consent-field input { flex: none; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--primary, #2563eb); }
