@@ -73,8 +73,11 @@ jobs:
           package: node-app.zip
           startup-command: 'HOSTNAME=0.0.0.0 node server.js'
           clean: true
-          restart: true
+          restart: false
+      - name: Restart the deployed worker
+        run: az webapp restart --resource-group Terminal-ch --name chungdo-client-dev --only-show-errors
       - name: Verify deployed revision and page
+        shell: bash
         env:
           APP_URL: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
         run: |
@@ -84,10 +87,10 @@ jobs:
             version=$(curl --fail --silent --show-error --location --max-time 20 -H 'Cache-Control: no-cache' "${APP_URL%/}/deployment-version.txt?revision=$GITHUB_SHA" || true)
             if [ "$version" = "$GITHUB_SHA" ] &&
               curl --fail --silent --show-error --location --max-time 20 "${APP_URL%/}/" -o homepage.html &&
-              grep -Fq 'Welfare Next' homepage.html; then
-              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/health" | jq -e '.data.status == "ok"'
-              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/health/ready" | jq -e '.status == "ok"'
-              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/policies?limit=1" | jq -e '.data | type == "array"'
+              grep -Fq 'Welfare Next' homepage.html &&
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/health" | jq -e '.data.status == "ok"' &&
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/health/ready" | jq -e '.status == "ok"' &&
+              curl --fail --silent --show-error --max-time 20 "${APP_URL%/}/backend/api/policies?limit=1" | jq -e '.data | type == "array"'; then
               printf 'Verified deployment %s\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
