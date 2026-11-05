@@ -1,10 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-inner page-width">
         <Link className="footer-brand" href="/" aria-label="Welfare Next 홈">
+          <span className="footer-brand-mark" aria-hidden="true">
+            <Image src="/logo.png" alt="" width={156} height={156} />
+          </span>
           Welfare Next
         </Link>
         <p>

@@ -45,6 +45,8 @@ function isWelfareAnalysis(value: unknown): value is WelfareAnalysis {
         isString(policy.policyId) &&
         isString(policy.name) &&
         isString(policy.reason) &&
+        (policy.supportDescription === undefined ||
+          isString(policy.supportDescription)) &&
         Array.isArray(policy.eligibility) &&
         policy.eligibility.every(
           (item) =>

@@ -1,0 +1,45 @@
+
+.policy-card { position: relative; transition: border-color 160ms ease, box-shadow 160ms ease; }
+.policy-card:has(.policy-card-open:hover) { border-color: #86a8ef; box-shadow: 0 8px 24px #2563eb0d; }
+.policy-card:has(.policy-card-open:focus-visible) { outline: 3px solid #2563eb; outline-offset: 4px; }
+.policy-card-open { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; cursor: pointer; }
+.policy-card-open:focus-visible { outline: none; }
+.policy-card-detail-label { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; color: #2563eb; font-size: 12px; font-weight: 650; }
+.policy-card-detail-label > span { font-size: 18px; }
+.policy-detail-dialog { position: fixed; inset: 0; width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; border: 1px solid #dce5f0; border-radius: 24px; background: #fff; color: #172b4d; box-shadow: 0 24px 90px #0f172a33; overflow-y: auto; overscroll-behavior: contain; }
+.policy-detail-dialog::backdrop { background: #10233e80; backdrop-filter: blur(4px); }
+.policy-detail-body { padding: 30px; }
+.policy-detail-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.policy-detail-eyebrow { color: #2563eb; font-size: 12px; font-weight: 700; }
+.policy-detail-close { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #e2e8f0; border-radius: 50%; background: #f8fafc; color: #475569; font-size: 25px; cursor: pointer; }
+.policy-detail-body > h2 { margin: 0 0 28px; font-size: 25px; line-height: 1.4; letter-spacing: -0.04em; }
+.policy-detail-section { margin-top: 26px; }
+.policy-detail-body h3 { margin: 0 0 12px; color: #172b4d; font-size: 15px; }
+.policy-detail-body p { margin: 0; color: #64748b; font-size: 14px; line-height: 1.8; }
+.policy-detail-conditions { margin: 0; border-top: 1px solid #e8edf5; }
+.policy-detail-conditions > div { display: grid; grid-template-columns: 65px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid #e8edf5; font-size: 13px; }
+.policy-detail-conditions dt { color: #64748b; }
+.policy-detail-conditions dd { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin: 0; color: #475569; overflow-wrap: anywhere; }
+.policy-detail-conditions .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.policy-detail-guidance { margin-top: 28px; padding: 18px; border: 1px solid #dbe7fb; border-radius: 14px; background: #f1f6ff; }
+.policy-detail-guidance p { font-size: 12px; }
+.policy-detail-done { width: 100%; margin-top: 26px; padding: 14px 20px; border: 0; border-radius: 12px; background: #2563eb; color: #fff; font-size: 14px; font-weight: 650; cursor: pointer; }
+.policy-detail-done:hover { background: #1d4ed8; }
+.policy-detail-done:focus-visible, .policy-detail-close:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+body:has(.policy-detail-dialog[open]) { overflow: hidden; }
+@media (max-width: 600px) { .policy-detail-body { padding: 22px; } .policy-detail-body > h2 { font-size: 21px; } }
+@media (prefers-reduced-motion: reduce) { .policy-card { transition: none; } }
+
+.policy-detail-benefit {
+  margin: 0 0 26px;
+  padding: 20px;
+  border: 1px solid #dbe7fb;
+  border-radius: 14px;
+  background: #f1f6ff;
+}
+.policy-detail-benefit h3 {
+  color: #1d4ed8;
+}
+.policy-detail-benefit p {
+  color: #334155;
+}

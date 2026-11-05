@@ -16,6 +16,8 @@ export const mockAnalysis: WelfareAnalysis = {
     {
       policyId: "demo-youth-rent",
       name: "청년 월세 한시 특별지원",
+      supportDescription:
+        "실제로 납부하는 월세를 월 최대 20만 원, 최대 24개월까지 지원해 주거비 부담을 줄여주는 제도예요. 임차보증금과 관리비는 지원 범위에서 제외돼요.",
       reason:
         "1인 청년 가구를 대상으로 하며 소득 기준이 주거지원과 달라 검토해 볼 수 있어요.",
       eligibility: [
@@ -28,6 +30,8 @@ export const mockAnalysis: WelfareAnalysis = {
     {
       policyId: "demo-local-housing",
       name: "경북 청년 주거비 지원",
+      supportDescription:
+        "청년의 주거비 부담을 줄이기 위한 지역 지원 후보예요. 구체적인 지원 방식, 금액과 기간은 거주 시·군의 사업 공고를 확인해야 해요.",
       reason: "거주 지역 기반 지원으로 지자체 기준이 따로 적용돼요.",
       eligibility: [
         { label: "연령", status: "MATCH", value: "만 18~39세" },
@@ -38,6 +42,8 @@ export const mockAnalysis: WelfareAnalysis = {
     {
       policyId: "demo-hug-loan",
       name: "청년 전용 버팀목 전세대출",
+      supportDescription:
+        "전세자금이 필요한 청년에게 임차보증금을 마련할 수 있도록 대출을 지원하는 제도예요. 대출 한도와 금리는 소득, 보증금과 계약 조건에 따라 확인해야 해요.",
       reason: "지원금이 아닌 저금리 대출로, 소득 상한이 비교적 높아요.",
       eligibility: [
         { label: "연령", status: "MATCH", value: "만 19~34세" },

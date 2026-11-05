@@ -103,14 +103,15 @@ select:focus-visible {
   width: 34px;
   height: 34px;
   place-items: center;
-  border-radius: 11px;
-  background: #eaf1ff;
-  color: var(--primary);
+  overflow: hidden;
+  border-radius: 10px;
+  background: #ffffff;
 }
 
-.brand-mark svg {
-  width: 24px;
-  height: 24px;
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-name {
@@ -135,10 +136,20 @@ select:focus-visible {
 .hero {
   min-height: clamp(360px, 50svh, 520px);
   display: grid;
-  grid-template-columns: minmax(0, 640px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
   align-items: center;
-  justify-content: center;
+  gap: 48px;
   padding-block: 72px;
+}
+
+.hero-visual {
+  min-width: 0;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .landing-section {
@@ -292,7 +303,7 @@ select:focus-visible {
 
 .analysis-section {
   margin-top: 0;
-  margin-bottom: 76px;
+  margin-bottom: 0;
   padding-block: 74px 76px;
   background: #ffffff;
   border-top: 1px solid #e6edf7;
@@ -955,9 +966,26 @@ select:focus-visible {
 
 .footer-brand {
   flex: 0 0 auto;
+  gap: 8px;
   font-size: 13px;
   font-weight: 730;
   letter-spacing: -0.04em;
+}
+
+.footer-brand-mark {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  place-items: center;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.footer-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .footer-inner p {
@@ -981,7 +1009,13 @@ select:focus-visible {
   .hero {
     min-height: 0;
     grid-template-columns: 1fr;
+    gap: 35px;
     padding-block: 54px 48px;
+  }
+
+  .hero-visual {
+    max-width: 600px;
+    margin-inline: auto;
   }
 
   .intro-section {
@@ -1004,7 +1038,7 @@ select:focus-visible {
 
   .analysis-section {
     margin-top: 54px;
-    margin-bottom: 54px;
+    margin-bottom: 0;
     padding-block: 54px 56px;
   }
 

@@ -23,6 +23,7 @@ export type PolicyRecommendation = {
   policyId: string;
   name: string;
   reason: string;
+  supportDescription?: string;
   eligibility: EligibilityItem[];
 };
 
