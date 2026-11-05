@@ -1,9 +1,9 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js app to Azure Web App - chungdo-client-dev
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -14,27 +14,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read #This is required for actions/checkout
-
+      contents: read
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Node.js version
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '24.x'
-
-      - name: npm install, build, and test
+      - name: Install and build
         run: |
           npm ci
-          npm run build --if-present
+          npm run build
           npm run test --if-present
-
-      - name: Package Next.js app
-        run: zip -qry node-app.zip .next public next.config.ts tsconfig.json package.json node_modules -x ".next/cache/*"
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+      - name: Package standalone Next.js app
+        run: |
+          test -f .next/standalone/server.js
+          cp -R public .next/standalone/public
+          cp -R .next/static .next/standalone/.next/static
+          printf '%s\n' "$GITHUB_SHA" > .next/standalone/public/deployment-version.txt
+          cd .next/standalone
+          zip -qry "$GITHUB_WORKSPACE/node-app.zip" .
+      - uses: actions/upload-artifact@v4
         with:
           name: node-app
           path: node-app.zip
@@ -43,34 +42,41 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
+      id-token: write
+      contents: read
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: node-app
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CD6BFF57F5FF4B0885174F69DD6872B4 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2A30EBA93AB74874B3119FDDD249661E }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B8C98A9B98324971B4CB6CB904A25640 }}
-
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'chungdo-client-dev'
-          slot-name: 'Production'
+          app-name: chungdo-client-dev
+          slot-name: Production
           package: node-app.zip
-
-      - name: Verify deployment and report URL
+          startup-command: 'HOSTNAME=0.0.0.0 node server.js'
+      - name: Verify deployed revision and page
         env:
           APP_URL: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
         run: |
           test -n "$APP_URL"
           printf '%s\n' "$APP_URL" >> "$GITHUB_STEP_SUMMARY"
-          curl --fail --silent --show-error --location --retry 10 --retry-delay 5 --retry-all-errors --max-time 20 "${APP_URL%/}/" -o /dev/null
+          for attempt in $(seq 1 30); do
+            version=$(curl --fail --silent --show-error --location --max-time 20 -H 'Cache-Control: no-cache' "${APP_URL%/}/deployment-version.txt?revision=$GITHUB_SHA" || true)
+            if [ "$version" = "$GITHUB_SHA" ] &&
+              curl --fail --silent --show-error --location --max-time 20 "${APP_URL%/}/" -o homepage.html &&
+              grep -Fq 'Welfare Next' homepage.html; then
+              printf 'Verified deployment %s\n' "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo 'The running site does not match the deployed revision.' >&2
+          exit 1
